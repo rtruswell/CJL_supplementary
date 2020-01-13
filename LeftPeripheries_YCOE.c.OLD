@@ -1,0 +1,105 @@
+node: CP*
+define: WhRel.def
+
+coding_query: 
+
+1: {
+Rel: ((CP* iDomsFirst !\**) AND (CP-REL* iDomsFirst !\**))
+Frl: ((CP* iDomsFirst !\**) AND (CP-FRL* iDomsFirst !\**))
+Car: ((CP* iDomsFirst !\**) AND (CP-CAR* iDomsFirst !\**))
+Tht: ((CP* iDomsFirst !\**) AND (CP-THT* iDomsFirst !\**))
+Adv: ((CP* iDomsFirst !\**) AND (CP-ADV* iDomsFirst !\**))
+Que: ((CP* iDomsFirst !\**) AND (CP-QUE* iDomsFirst !\**))
+Cmp: ((CP* iDomsFirst !\**) AND (CP-CMP* iDomsFirst !\**))
+Deg: ((CP* iDomsFirst !\**) AND (CP-DEG* iDomsFirst !\**))
+Eop: ((CP* iDomsFirst !\**) AND (CP-EOP* iDomsFirst !\**))
+Tmc: ((CP* iDomsFirst !\**) AND (CP-TMC* iDomsFirst !\**))
+Clf: ((CP* iDomsFirst !\**) AND (CP-CLF* iDomsFirst !\**))
+Exl: ((CP* iDomsFirst !\**) AND (CP-EXL* iDomsFirst !\**))
+CPX: ((CP* iDomsFirst !\**) AND (CPX* iDomsFirst !\**))
+X: ELSE
+   }
+
+2: {
+Zero: (CP* iDomsMod W* 0)
+Zero: (CP* iDomsFirst C)
+Zero: (CP* iDomsFirst IP-SUB*|IP-INF*)
+Which: (CP* iDomsMod W* WhichForm)
+What: (CP* iDomsMod W* WhatForm)
+HW: (CP* iDomsMod W* WhomForm|WhoForm|WhereForm|WhitherForm|WhetherForm|HowForm|WhenForm|WhyForm|WhenceForm|WherewithForm|WhereofForm|WhereinForm|WhoseForm|WheremidForm|WhereforForm|WherethroughForm|WherebyForm|WheretoForm|WhereasForm|WhOtherForm|HowForm|Tohwon|tohwan|tohwon|humeta|Humeta|humete|hulucu)
+Swylc: (CP* iDomsMod W*|ADJ^* SwylcForm)
+Tha: ((CP* iDomsMod W* ADV*) AND (ADV* iDomsMod ADV* +ta|+Da|+Ta|+da|\$+ta))
+Thanon: ((CP* iDomsMod W* ADV*) AND (ADV* iDomsMod ADV* +tanon|+tanan|+danon|+donan|+tonone|+tonon|+tonan|+tanen|+donon))
+Then: ((CP* iDomsMod W* ADV*) AND (ADV* iDomsMod ADV* +tonne|+donne))
+There: ((CP* iDomsMod W* ADV*) AND (ADV* iDomsMod ADV* thereForm))
+Therein: ((CP* iDomsMod W* ADV*) AND (ADV* iDomsMod ADV* +t+arin))
+Thereon: ((CP* iDomsMod W* ADV*) AND (ADV* iDomsMod ADV* +t+aron))
+Thither: ((CP* iDomsMod W* ADV*) AND (ADV* iDomsMod ADV* +tyder|+tider|+dider|+dieder))
+DemNotThat: ((CP* iDomsMod W* D|D^*) AND (D|D^* iDoms DemNotThatForm))
+DemNotThat: ((CP* iDomsMod W* PP|NP|NP-*) AND (PP|NP|NP-* iDomsMod PP|NP|NP-* D|D^*) AND (D|D^* iDoms DemNotThatForm))
+That: ((CP* iDomsMod W* D|D^*) AND (D|D^* iDoms thatTForm))
+That: ((CP* iDomsMod W* NP|NP-*) AND (NP|NP-* iDomsMod NP|NP-* D|D^*) AND (D|D^* iDoms thatTForm))
+Thatte: (CP* iDomsMod W*|D^* thatTEForm)
+If: (CP* iDomsMod W* ifForm)
+PP: (CP* iDomsFirst PP-*)
+P: ((CP* iDoms P) AND (CP* iDoms C|IP-SUB*|CONJ|CP-*) AND (P iPrecedes C|IP-SUB*|CONJ|CP-*))
+PDem: ((CP* iDomsFirst P) AND (CP* iDomsNumber 2 D^*) AND (D^* iDoms DemNotThatForm))
+DemP: ((CP* iDomsFirst D^*) AND (CP* iDomsNumber 2 P) AND (D^* iDoms +ty))
+Swa: ((CP* iDomsFirst ADV) AND (ADV iDoms swa))
+CONJ: (CP* iDoms CONJ*)
+CPX: ((CP* iDomsFirst !\**) AND (CPX* iDomsFirst !\**))
+IPX: (CP* iDomsFirst IPX*)
+FRAG: (CP* iDomsFirst FRAG*)
+Zero: ((CP* iDoms INTJ*) AND (CP* iDoms IP-SUB*) AND (INTJ* iPrecedes IP-SUB*))
+Zero: (CP* iDomsFirst VBP)
+X: ELSE
+   }
+
+3: {
+Zero: (CP* iDomsMod C 0)
+Zero: ((CP* iDoms W*|P) AND (CP* iDoms IP*|FRAG) AND (W*|P iPrecedes IP*|FRAG))
+Zero: (CP* iDomsOnly W*|IP-SUB*)
+The: (CP* iDomsMod C thatEForm)
+That: (CP* iDomsMod C thatTForm)
+Thatte: (CP* iDomsMod C thatTEForm)
+As: (CP* iDomsMod C asForm)
+So: (CP* iDomsMod C seForm)
+If: (CP* iDomsMod C ifForm)
+CONJ: (CP* iDoms CONJP)
+CPX: ((CP* iDomsFirst !\**) AND (CPX* iDomsFirst !\**))
+IPX: (CP* iDomsFirst IPX*)
+Zero: (CP* iDomsFirst VBP)
+X: ELSE
+   }
+
+4: {
+PStr: ((CP* iDoms W*) AND (W* SameIndex \**) AND (PP* iDoms NP*) AND (NP* iDoms \**))
+Nom: ((CP* iDoms W*) AND (W* SameIndex \**) AND (NP-NOM* iDoms \**))
+Nom: ((CP* iDoms W*) AND (W* SameIndex NP-NOM-RSP-*))
+Acc: ((CP* iDoms W*) AND (W* SameIndex \**) AND (NP-ACC* iDoms \**))
+Acc: ((CP* iDoms W*) AND (W* SameIndex NP-ACC-RSP-*))
+Dat: ((CP* iDoms W*) AND (W* SameIndex \**) AND (NP-DAT* iDoms \**))
+Dat: ((CP* iDoms W*) AND (W* SameIndex NP-DAT-RSP-*))
+Gen: ((CP* iDoms W*) AND (W* SameIndex \**) AND (NP-GEN* iDoms \**))
+Gen: ((CP* iDoms W*) AND (W* SameIndex NP-GEN-RSP-*))
+NPOther: ((CP* iDoms W*) AND (W* SameIndex \**) AND (NP|NP-PRD*|NP-SBJ*|NP-ADT*|NP-EXT*|NP-TMP* iDoms \**))
+NPOther: ((CP* iDoms W*) AND (W* SameIndex NP-RSP-*|NP-ACC-SBJ-RSP-*))
+PP: ((CP* iDoms W*) AND (W* SameIndex \**) AND (PP* iDoms \**))
+ADVP: ((CP* iDoms W*) AND (W* SameIndex \**) AND (ADVP* iDoms \**))
+ADJP: ((CP* iDoms W*) AND (W* SameIndex \**) AND (ADJP* iDoms \**))
+QP: ((CP* iDoms W*) AND (W* SameIndex \**) AND (QP* iDoms \**))
+NoMove: (CP* iDomsFirst C|IP-SUB*)
+NoMove: (CP* iDomsFirst P)
+NoMove: (CP* iDomsOnly W*)
+NoMove: ((CP* iDoms P) AND (CP* iDoms C) AND (P iPrecedes C))
+NoMove: ((CP* iDoms P) AND (CP* iDoms D^*) AND (CP* iDoms C) AND (P iPrecedes D^*) AND (D^* iPrecedes C))
+NoMove: ((CP* iDomsFirst !W*) AND (CP* iDomsNumber 2 C))
+NoMove: (CP* iDomsMod WQ|WQ-* WhetherForm)
+NoMove: ((CP* iDomsFirst NP-*|PP-*|CP-ADV-*|ADVP-TMP-*|QP-*|*PRN*) AND (CP* iDomsNumber 2 C))
+NoMove: ((CP* iDomsFirst [1]NP-*|PP-*|CP-ADV-*|ADVP-TMP-*|QP-*|*PRN*|X) AND (CP* iDoms [2]NP-*|PP-*|CP-ADV-*|ADVP-TMP-*|QP-*|*PRN*|X) AND (CP* iDoms C) AND ([2]NP-*|PP-*|CP-ADV-*|ADVP-TMP-*|QP-*|*PRN*|X iPrecedes C))
+CONJ: (CP* iDoms CONJP|CONJ)
+CPX: ((CP* iDomsFirst !\**) AND (CPX* iDomsFirst !\**))
+IPX: (CP* iDomsFirst IPX*)
+NoMove: (CP* iDomsFirst VBP)
+X: ELSE
+   }
